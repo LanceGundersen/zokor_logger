@@ -6,17 +6,16 @@ import 'package:zokor_logger/services/auth.dart';
 import 'package:zokor_logger/models/user.dart';
 
 void main() {
-  assert(() {
+  if (fb.apps.isEmpty) {
     fb.initializeApp(
       apiKey: "AIzaSyB3jeqrTHWiJv7O9QH-5KA6CYPGRrmbkTA",
       authDomain: "zokor-logger.firebaseapp.com",
       databaseURL: "https://zokor-logger.firebaseio.com",
       projectId: "zokor-logger",
       storageBucket: "zokor-logger.appspot.com",
-      messagingSenderId: "735183944889",
+      // messagingSenderId: "735183944889",
     );
-    return true;
-  }());
+  }
   runApp(AppInjector());
 }
 
