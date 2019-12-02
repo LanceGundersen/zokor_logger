@@ -359,6 +359,10 @@ hs_err_pid*
 
 # End of https://www.gitignore.io/api/web,dart,macos,flutter,windows,intellij,androidstudio,visualstudiocode
 
+# Firebase
+.firebase
+.flutter-plugins-dependencies
+
 # Exceptions to above rules.
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 !/web/*.html
