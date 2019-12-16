@@ -1,11 +1,17 @@
+import 'package:firebase/firebase.dart';
+import 'package:firebase/firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:zokor_logger/services/auth.dart';
 
 class Home extends StatelessWidget {
+  final CollectionReference taskCollection;
   final AuthService _authService = AuthService();
+
+  Home() : taskCollection = firestore().collection('tasks');
 
   @override
   Widget build(BuildContext context) {
+    print(taskCollection.doc('d2e7UPpt1TSMkSFcVWXEMzsVXS93').get());
     return Container(
       child: Scaffold(
         backgroundColor: Colors.brown[50],

@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:firebase/firebase.dart' as fb;
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zokor_logger/screens/wrapper.dart';
 import 'package:zokor_logger/services/auth.dart';
@@ -13,7 +13,7 @@ void main() {
       databaseURL: "https://zokor-logger.firebaseio.com",
       projectId: "zokor-logger",
       storageBucket: "zokor-logger.appspot.com",
-      // messagingSenderId: "735183944889",
+      messagingSenderId: "735183944889",
     );
   }
   runApp(AppInjector());

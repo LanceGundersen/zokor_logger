@@ -1,6 +1,7 @@
 import 'package:firebase/firebase.dart';
 import 'package:meta/meta.dart';
 import 'package:zokor_logger/models/user.dart';
+import 'package:zokor_logger/services/database.dart';
 
 @immutable
 class AuthService {
@@ -50,6 +51,8 @@ class AuthService {
       UserCredential result =
           await _firebaseAuth.createUserWithEmailAndPassword(email, password);
       User user = result.user;
+      await DatabaseService(user.uid)
+          .updateUserData('PR', '[LAB-343]', '2019-12-01', '1h 30m');
       return _userFromFirebaseUser(user);
     } catch (e) {
       print('Error siging in with credentials: $e');
