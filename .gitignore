@@ -363,6 +363,9 @@ hs_err_pid*
 .firebase
 .flutter-plugins-dependencies
 
+# ios
+ios/*.xcconfig
+
 # Exceptions to above rules.
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 !/web/*.html
