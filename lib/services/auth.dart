@@ -1,73 +1,36 @@
 import 'package:firebase/firebase.dart';
 import 'package:meta/meta.dart';
 import 'package:zokor_logger/models/user.dart';
-import 'package:zokor_logger/services/database.dart';
+import 'dart:async';
+
+import 'database.dart';
 
 @immutable
 class AuthService {
-  AuthService({Auth firebaseAuth, GoogleAuthProvider googleSignin})
+  AuthService({Auth firebaseAuth, GithubAuthProvider githubAuth})
       : _firebaseAuth = firebaseAuth ?? auth(),
-        _googleSignIn = googleSignin ?? GoogleAuthProvider();
+        _githubAuth = githubAuth ?? GithubAuthProvider();
 
   final Auth _firebaseAuth;
-  final GoogleAuthProvider _googleSignIn;
+  final GithubAuthProvider _githubAuth;
 
-  // Create user obj based on fire base user
   AppUser _userFromFirebaseUser(User user) {
     return user != null ? AppUser(user.uid) : null;
   }
 
-  // Application auth change user stream
   Stream<AppUser> get user {
     return _firebaseAuth.onAuthStateChanged.map(_userFromFirebaseUser);
   }
 
-  Future signInWithGoogle() async {
+  Future loginWithGitHub() async {
     try {
-      UserCredential result =
-          await _firebaseAuth.signInWithPopup(_googleSignIn);
-      User user = result.user;
-      return _userFromFirebaseUser(user);
-    } catch (e) {
-      print('Error in sign in with google: $e');
-      return null;
-    }
-  }
-
-  Future signInWithCredentials(String email, String password) async {
-    try {
-      UserCredential result =
-          await _firebaseAuth.signInWithEmailAndPassword(email, password);
-      User user = result.user;
-      return _userFromFirebaseUser(user);
-    } catch (e) {
-      print('Error in sign in with credentials: $e');
-      return null;
-    }
-  }
-
-  Future signUpWithCredentials(String email, String password) async {
-    try {
-      UserCredential result =
-          await _firebaseAuth.createUserWithEmailAndPassword(email, password);
+      UserCredential result = await _firebaseAuth.signInWithPopup(_githubAuth);
       User user = result.user;
       await DatabaseService(user.uid)
           .updateUserData('PR', '[LAB-343]', '2019-12-01', '1h 30m');
       return _userFromFirebaseUser(user);
     } catch (e) {
-      print('Error siging in with credentials: $e');
-      return null;
-    }
-  }
-
-  Future signUpWithGoogle(String email, String password) async {
-    try {
-      UserCredential result =
-          await _firebaseAuth.signInWithPopup(_googleSignIn);
-      User user = result.user;
-      return _userFromFirebaseUser(user);
-    } catch (e) {
-      print('Error siging in with credentials: $e');
+      print('Error in sign in with google: $e');
       return null;
     }
   }

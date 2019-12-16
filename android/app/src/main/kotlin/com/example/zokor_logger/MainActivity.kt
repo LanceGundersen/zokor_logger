@@ -1,4 +1,4 @@
-package com.example.zokor_logger
+package com.zokor.zokor_logger
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

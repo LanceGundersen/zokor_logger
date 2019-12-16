@@ -1,7 +1,8 @@
 import 'package:firebase/firebase.dart';
 import 'package:firebase/firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:zokor_logger/services/auth.dart';
+
+import '../../services/auth.dart';
 
 class Home extends StatelessWidget {
   final CollectionReference taskCollection;
@@ -11,12 +12,11 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(taskCollection.doc('d2e7UPpt1TSMkSFcVWXEMzsVXS93').get());
     return Container(
       child: Scaffold(
         backgroundColor: Colors.brown[50],
         appBar: AppBar(
-            title: Text('Zokor Logger'),
+            title: Text('Hello'),
             backgroundColor: Colors.black12,
             elevation: 0.0,
             actions: <Widget>[

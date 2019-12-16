@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zokor_logger/screens/authenticate/register.dart';
 import 'package:zokor_logger/screens/authenticate/sign_in.dart';
+
+import '../home/home.dart';
 
 class Authenticate extends StatefulWidget {
   @override
@@ -19,7 +20,7 @@ class _AuthenticateState extends State<Authenticate> {
     if (showSignIn) {
       return SignIn(toggleView);
     } else {
-      return Register(toggleView);
+      return Home();
     }
   }
 }
